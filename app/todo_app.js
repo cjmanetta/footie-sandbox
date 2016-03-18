@@ -1,6 +1,9 @@
 import React from 'react';
 import store from './store';
 import FilterLink from './filter_link';
+import TodoList from './todo_list';
+import AddToDo from './add_todo';
+import Footer from './footer';
 
 const getVisibleTodos = (
 	todos,
@@ -22,70 +25,44 @@ const getVisibleTodos = (
 
 let nextTodoId = 0;
 
-class TodoApp extends React.Component {
-	render() {
-		const {
-			todos,
-			visibilityFilter
-		} = this.props;
-		const visibleTodos = getVisibleTodos(
-			todos,
-			visibilityFilter
-		);
-		return (
-			<div>
-				<input ref={node => {this.input = node;}} type="text"/>
-				<button onClick={() => {
+const TodoApp =  ({
+	todos,
+	visibilityFilter
+}) => (
+		<div>
+			<AddToDo
+				onAddClick={text=>
 					store.dispatch({
 						type: 'ADD_TODO',
-						text: this.input.value,
-						id: nextTodoId++
-					});
-					this.input.value = '';
-				}}>Add todo</button>
-				<ul>
-					{visibleTodos.map(todo => 
-						<li key={todo.id}
-								onClick={() => {
-									store.dispatch({
-										type: 'TOGGLE_TODO',
-										id: todo.id
-									});
-								}}
-								style={{
-									textDecoration:
-										todo.completed ?
-											'line-through' :
-											'none'
-								}}>
-						{todo.text}
-						</li>
-					)}
-				</ul>
-				<p>
-					Show:
-					{' '}
-					<FilterLink  
-						filter='SHOW_ALL'
-						currentFilter={visibilityFilter}>
-						All
-					</FilterLink>
-					{' '}
-					<FilterLink 
-						filter='SHOW_ACTIVE'
-						currentFilter={visibilityFilter}>
-						active
-					</FilterLink>
-					{' '}
-					<FilterLink 
-						filter='SHOW_COMPLETED'
-						currentFilter={visibilityFilter}>
-						completed
-					</FilterLink>
-				</p>
-			</div>
-		);
-	}
-}
+						id: nextTodoId++,
+						text
+					})
+				}
+			/>
+			<TodoList 
+				todos={
+					getVisibleTodos(
+						todos,
+						visibilityFilter
+					)
+				}
+				onTodoClick={id =>
+					store.dispatch({
+						type: 'TOGGLE_TODO',
+						id
+					})
+				}
+			/>
+			<Footer 
+				visibilityFilter={visibilityFilter}
+				onFilterClick={filter =>
+					store.dispatch({
+						type: 'SET_VISIBILITY_FILTER',
+						filter
+					})
+				}
+			/>
+		</div>
+	);
 
 export default TodoApp;
