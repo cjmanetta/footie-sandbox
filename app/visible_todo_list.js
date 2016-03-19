@@ -34,7 +34,6 @@ class VisibleTodoList extends React.Component {
 	}
 
 	render() {
-		const props = this.props;
 		const { store } = this.context;
 		const state = store.getState();
 

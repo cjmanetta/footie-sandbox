@@ -2,15 +2,52 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import Store from "./store";
-import TodoApp from "./todo_app"
+import Root from "./root"
 
 ReactDOM.render(
 	<Provider store={Store}>
-		<TodoApp />
+		<Root />
 	</Provider>,
   document.getElementById('root')
 );
-// state log =========================
+
+
+// for testing the store and reducers
+
+// ReactDOM.render(
+// 	<h1>my things</h1>,
+//   document.getElementById('root')
+// );
+
+
+// footie state log =========================
+// console.log('Initial state:');
+// console.log(Store.getState());
+// console.log('--------------');
+
+// console.log('Dispatching ADD_SCORE.');
+// Store.dispatch({
+//   type: 'ADD_SCORE',
+//   id: 0,
+//   value: 6,
+//   player: "Carli Lloyd",
+//   challenge: "Ronaldo Chop"
+// });
+// console.log('Current state:');
+// console.log(Store.getState());
+// console.log('--------------');
+
+
+
+
+
+
+
+
+
+
+
+// original state log =========================
 // console.log('Initial state:');
 // console.log(Store.getState());
 // console.log('--------------');

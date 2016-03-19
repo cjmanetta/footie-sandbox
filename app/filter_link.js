@@ -1,5 +1,4 @@
 import React from 'react';
-// import store from './store';
 import Link from './link';
 import { setVisibilityFilter } from './actions';
 
