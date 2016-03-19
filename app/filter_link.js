@@ -1,6 +1,7 @@
 import React from 'react';
-import store from './store';
+// import store from './store';
 import Link from './link';
+import { setVisibilityFilter } from './actions';
 
 class FilterLink extends React.Component {
 	componentDidMount() {
@@ -16,16 +17,14 @@ class FilterLink extends React.Component {
 
 	render() {
 		const props = this.props;
+		const { store } = this.context;
 		const state = store.getState();
 
 		return (
 			<Link
 				active={ props.filter === state.visibilityFilter}
 				onClick={() =>
-					store.dispatch({
-						type: 'SET_VISIBILITY_FILTER',
-						filter: props.filter
-					})
+					store.dispatch(setVisibilityFilter(props.filter))
 				}
 			>
 				{props.children}

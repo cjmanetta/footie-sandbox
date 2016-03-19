@@ -1,6 +1,5 @@
 import React from 'react';
-
-let nextTodoId = 0;
+import { addTodo } from './actions'
 
 const AddTodo = (props, { store }) => {
 	let input;
@@ -10,11 +9,7 @@ const AddTodo = (props, { store }) => {
 			<input ref={node => {input = node;}}/>
 			<button 
 				onClick={() => { 
-					store.dispatch({
-						type: 'ADD_TODO',
-						id: nextTodoId++,
-						text: input.value
-					});
+					store.dispatch(addTodo(input.value));
 					input.value= '';
 				}}>
 				Add todo
