@@ -4,17 +4,10 @@ import Counter from "./counter";
 import Store from "./store";
 import TodoApp from "./todo_app"
 
-
-const render = () => {
-	ReactDOM.render(
-	  <TodoApp {...Store.getState()}/>,
-	  document.getElementById('root')
-	);
-};
-
-Store.subscribe(render);
-render();
-
+ReactDOM.render(
+  <TodoApp />,
+  document.getElementById('root')
+);
 // state log =========================
 // console.log('Initial state:');
 // console.log(Store.getState());
