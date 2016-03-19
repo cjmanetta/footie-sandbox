@@ -4,8 +4,6 @@ import VisibleTodoList from './visible_todo_list';
 import AddToDo from './add_todo';
 import Footer from './footer';
 
-let nextTodoId = 0;
-
 const TodoApp =  () => (
 		<div>
 			<AddToDo />

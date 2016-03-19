@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Counter from "./counter";
+import { Provider } from "react-redux";
 import Store from "./store";
 import TodoApp from "./todo_app"
 
 ReactDOM.render(
-  <TodoApp />,
+	<Provider store={Store}>
+		<TodoApp />
+	</Provider>,
   document.getElementById('root')
 );
 // state log =========================
