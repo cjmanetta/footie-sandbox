@@ -1,10 +1,11 @@
 import React from 'react';
 import Scoreboard from './components/scoreboard';
+import ScoreForm from './components/scoreform';
 
-const Root = () => (
+const Root = 	() => (
 	<div>
 		<Scoreboard />
-		<h1>ScoreForm</h1>
+		<ScoreForm />
 	</div>
 );
 
