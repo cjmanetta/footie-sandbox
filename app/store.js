@@ -1,5 +1,5 @@
 // import Todos from './reducers/todo_app';
-import scores from './reducers/scores';
+import ScoresApp from './reducers/scores';
 import { createStore } from 'redux';
 
 
@@ -7,11 +7,11 @@ import { createStore } from 'redux';
 
 // }]
 // const store = createStore(Todos);
-const store = createStore(scores);
+// const store = createStore(ScoresApp);
 
 
 export default function configureStore(initialState) {
-  const store = createStore(scores, initialState,
+  const store = createStore(ScoresApp, initialState,
     window.devToolsExtension ? window.devToolsExtension() : undefined
   );
   return store;

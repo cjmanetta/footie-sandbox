@@ -11,11 +11,12 @@ const ScoreForm = (props, { store }) => {
 			<form 
 				onSubmit={(event) => {
 					event.preventDefault();
+					debugger;
 					store.dispatch({
 								type: 'ADD_SCORE',
 								id: nextScoreId++,
 								value: input.value,
-								player: 'Carli Lloyd',
+								player: "test",
 								challenge: 'Ronaldo Chop'
 							});
 					input.value = '';

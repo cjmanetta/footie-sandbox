@@ -14,13 +14,28 @@ class PlayerSelector extends React.Component {
 	render() {
 		const { store } = this.context;
 		const state = store.getState();
+		let selection;
 
 		const players = state.players.map(player => {
 			return <option value={player.id} key={player.id}>{player.name}</option>
 		});
 
 		return (
-			<select defaultValue="">{players}</select>
+			<select 
+				defaultValue=""
+				onChange={() => {
+					store.dispatch({
+						type: 'SELECT_PLAYER',
+						id: selection.value
+					});
+					console.log("i got here!")
+				}}
+				ref={(node) => {
+					selection = node;
+					// console.log(selection.value);
+				}}>
+				{players}
+			</select>
 		)
 	}
 };
