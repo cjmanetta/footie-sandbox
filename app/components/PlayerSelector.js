@@ -1,19 +1,28 @@
 import React from 'react';
 
 //should be getting this from the store
-const getPlayers = () => {
-	return [
-		{id: 1, name: "Carli Lloyd"},
-		{id: 2, name: "Becky Saurbruen"},
-		{id: 3, name: "Hope Solo"}
-	];
-};
+// const getPlayers = () => {
+// 	return [
+		
+// 	];
+// };
 
 class PlayerSelector extends React.Component {
 
-	render() {
+	componentDidMount() {
+		const { store } = this.context;
+		this.unsubscribe = store.subscribe(() => this.forceUpdate());
+	}
 
-		const players = getPlayers().map(player => {
+	componentWillUnmount() {
+		this.unsubscribe();
+	}
+
+	render() {
+		const { store } = this.context;
+		const state = store.getState();
+		// debugger;
+		const players = state.players.map(player => {
 			return <option value={player.id} key={player.id}>{player.name}</option>
 		});
 
@@ -23,5 +32,8 @@ class PlayerSelector extends React.Component {
 	}
 };
 
+PlayerSelector.contextTypes = {
+	store: React.PropTypes.object
+};
 
 export default PlayerSelector;
