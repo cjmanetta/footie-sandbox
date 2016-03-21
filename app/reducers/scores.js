@@ -14,13 +14,25 @@ const score = (state, action) => {
 	}
 };
 
-const scores = (state =	 [], action) => {
+
+const constructScores = (state, action) => {
+	switch(action.type) {
+		case 'ADD_SCORE':
+			return {
+				scores: [
+					...state[0].scores,
+					score(undefined, action)
+				] 	
+			}
+	}
+};
+
+const scores = (state =	[{scores:[]}], action) => {
 	switch(action.type) {
 		case 'ADD_SCORE':
 			return [
-				...state,
-				score(undefined, action)
-			]
+				constructScores(state, action),
+			];
 		default:
 			return state;
 	}

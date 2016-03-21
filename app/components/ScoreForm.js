@@ -1,19 +1,7 @@
 import React from 'react';
+import PlayerSelector from './playerselector';
 
 let nextScoreId = 1;
-
-const printLog = (store) =>{
-	var state = store.getState();
-	console.log(
-		`================================
-store looks like this:
---------------------------------
-		 `);
-
-		state.forEach((score) => { console.log(score)})
-	
-};
-
 
 const ScoreForm = (props, { store }) => {
 	let input;
@@ -22,7 +10,6 @@ const ScoreForm = (props, { store }) => {
 			<form 
 				onSubmit={(event) => {
 					event.preventDefault();
-					printLog(store);
 					store.dispatch({
 								type: 'ADD_SCORE',
 								id: nextScoreId++,
@@ -31,9 +18,8 @@ const ScoreForm = (props, { store }) => {
 								challenge: 'Ronaldo Chop'
 							});
 					input.value = '';
-					printLog(store);
 				}}>
-				<div>player selector</div>
+				<PlayerSelector />
 				<div>challenge selector</div>
 				<input type="number" ref={node => {input = node;}}/>
 				<button
