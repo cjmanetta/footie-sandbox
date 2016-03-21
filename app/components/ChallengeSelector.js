@@ -1,6 +1,6 @@
 import React from 'react';
 
-class PlayerSelector extends React.Component {
+class ChallengeSelector extends React.Component {
 
 	componentDidMount() {
 		const { store } = this.context;
@@ -15,18 +15,18 @@ class PlayerSelector extends React.Component {
 		const { store } = this.context;
 		const state = store.getState();
 
-		const players = state.players.map(player => {
-			return <option value={player.id} key={player.id}>{player.name}</option>
+		const challenges = state.challenges.map(challenge => {
+			return <option value={challenge.id} key={challenge.id}>{challenge.title}</option>
 		});
 
 		return (
-			<select defaultValue="">{players}</select>
+			<select defaultValue="">{challenges}</select>
 		)
 	}
 };
 
-PlayerSelector.contextTypes = {
+ChallengeSelector.contextTypes = {
 	store: React.PropTypes.object
 };
 
-export default PlayerSelector;
+export default ChallengeSelector;

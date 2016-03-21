@@ -1,5 +1,6 @@
 import React from 'react';
 import PlayerSelector from './playerselector';
+import ChallengeSelector from './challengeselector';
 
 let nextScoreId = 1;
 
@@ -20,7 +21,7 @@ const ScoreForm = (props, { store }) => {
 					input.value = '';
 				}}>
 				<PlayerSelector />
-				<div>challenge selector</div>
+				<ChallengeSelector />
 				<input type="number" ref={node => {input = node;}}/>
 				<button
 					type="submit">

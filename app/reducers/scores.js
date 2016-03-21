@@ -9,6 +9,14 @@ const constructPlayers = () => {
 		];
 };
 
+const constructChallenges = () => {
+	return [
+			{id: 1, title: "Ronaldo Chop"},
+			{id: 2, title: "Juggling"},
+			{id: 3, title: "Maradona"}
+		];
+};
+
 const score = (state, action) => {
 	switch (action.type) {
 		case 'ADD_SCORE':
@@ -31,14 +39,18 @@ const constructScores = (state, action) => {
 					...state.scores,
 					score(undefined, action)
 			];
+		default:
+			return state;
 	}
 };
 
+// this initial state should be loaded from the server
 const initialState = {
 	scores: [],
-	players: constructPlayers()
-}
-// this should take an initial state which is loaded from the server
+	players: constructPlayers(),
+	challenges: constructChallenges()
+};
+
 const scores = (state =	initialState, action) => {
 	switch(action.type) {
 		case 'ADD_SCORE':
