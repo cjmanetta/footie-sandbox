@@ -1,6 +1,8 @@
 import React from 'react';
 import Score from './score';
 
+let nextSortedScoreId = 0;
+
 const ScoresList = ({
 	scores
 }) => {
@@ -13,7 +15,7 @@ const ScoresList = ({
 		<ul> 
 			{scores.map(score => 
 				<Score 
-					key={score.id}
+					key={nextSortedScoreId++}
 					score={score}			
 				/>
 			)}
