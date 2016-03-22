@@ -2,35 +2,73 @@ import React from 'react';
 import PlayerSelector from './playerselector';
 import ChallengeSelector from './challengeselector';
 
+
 let nextScoreId = 1;
 
-const ScoreForm = (props, { store }) => {
-	let input;
-	return (
-		<div>
+class ScoreForm extends React.Component {
+
+	componentDidMount() {
+		const { store } = this.context;
+		this.unsubscribe = store.subscribe(() => this.forceUpdate());
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
+	}
+
+	// clearSelectors() {
+	// 	const { store } = this.context;
+	// 	const state = store.getState();
+	// 	debugger;
+	// 	store.dispatch({
+	// 		type: 'RESET_SELECTORS'
+	// 	})
+	// 	// this.refs.playerSelector.clear(state.players[0])
+	// }
+
+	render() {
+		
+		let input;
+		let playerSelector;
+		let challengeSelector;
+		const { store } = this.context;
+		const state = store.getState();
+
+		const clearForm = () => {
+			input.value = '';
+			playerSelector.selection.value = playerSelector.defaultSelection.value;
+			challengeSelector.selection.value = challengeSelector.defaultSelection.value;
+		}
+
+		return (
 			<form 
 				onSubmit={(event) => {
 					event.preventDefault();
-					debugger;
+					// debugger;
+					// debugger;
 					store.dispatch({
 								type: 'ADD_SCORE',
 								id: nextScoreId++,
 								value: input.value,
-								player: "test",
-								challenge: 'Ronaldo Chop'
+								player: state.selectorCache.player,
+								challenge: state.selectorCache.challenge
 							});
-					input.value = '';
-				}}>
-				<PlayerSelector />
-				<ChallengeSelector />
+					clearForm();
+				}}> 
+				<PlayerSelector 
+					ref={node => {playerSelector = node}} 
+				/>
+				<ChallengeSelector 
+					ref={node => {challengeSelector = node}} 
+				/>
 				<input type="number" ref={node => {input = node;}}/>
 				<button
 					type="submit">
 					record
 				</button>
 			</form>
-		</div>
-	)
+		)
+	}
 };
 
 ScoreForm.contextTypes = {

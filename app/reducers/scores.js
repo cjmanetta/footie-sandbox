@@ -17,7 +17,6 @@ const constructChallenges = () => {
 		];
 };
 
-
 const score = (state, action) => {
 	switch (action.type) {
 		case 'ADD_SCORE':
@@ -50,7 +49,7 @@ const initialState = {
 	scores: [],
 	players: constructPlayers(),
 	challenges: constructChallenges(),
-	selectorCache: {player: null}
+	selectorCache: {player: null, challenge: null}
 };
 
 // const constructSelectors = (state, action) => {
@@ -70,13 +69,24 @@ const scoresApp = (state =	initialState, action) => {
 			return {
 				...state,
 				selectorCache: {
+					...state.selectorCache,
 					player: action.id
 				}
-			}
+			};
+		case 'SELECT_CHALLENGE':
+			return {
+				...state,
+				selectorCache: {
+					...state.selectorCache,
+					challenge: action.id
+				}
+			};
 		case 'ADD_SCORE':
-			return Object.assign({}, state, {
-				scores: constructScores(state, action)
-			});
+			return {
+				...state,
+				scores: constructScores(state, action),
+				selectorCache: {player: null, challenge: null}
+			};
 		default:
 			return state;
 	}

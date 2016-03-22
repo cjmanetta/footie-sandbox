@@ -12,9 +12,9 @@ class PlayerSelector extends React.Component {
 	}
 
 	render() {
+
 		const { store } = this.context;
 		const state = store.getState();
-		let selection;
 
 		const players = state.players.map(player => {
 			return <option value={player.id} key={player.id}>{player.name}</option>
@@ -23,17 +23,15 @@ class PlayerSelector extends React.Component {
 		return (
 			<select 
 				defaultValue=""
-				onChange={() => {
+				onChange={(event) => {
 					store.dispatch({
 						type: 'SELECT_PLAYER',
-						id: selection.value
+						id: this.selection.value
 					});
-					console.log("i got here!")
 				}}
-				ref={(node) => {
-					selection = node;
-					// console.log(selection.value);
-				}}>
+				ref={node => { this.selection = node;}}
+				>
+				<option value="" ref={node => { this.defaultSelection = node;}}>select a player</option>
 				{players}
 			</select>
 		)

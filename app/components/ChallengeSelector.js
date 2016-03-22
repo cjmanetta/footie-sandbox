@@ -20,7 +20,19 @@ class ChallengeSelector extends React.Component {
 		});
 
 		return (
-			<select defaultValue="">{challenges}</select>
+			<select 
+				defaultValue=""
+				onChange={(event) => {
+					store.dispatch({
+						type: 'SELECT_CHALLENGE',
+						id: this.selection.value
+					});
+				}}
+				ref={node => { this.selection = node;}}
+				>
+				<option value="" ref={node => { this.defaultSelection = node;}}>select a challenge</option>
+				{challenges}
+			</select>
 		)
 	}
 };
