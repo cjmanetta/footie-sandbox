@@ -16,16 +16,6 @@ class ScoreForm extends React.Component {
 		this.unsubscribe();
 	}
 
-	// clearSelectors() {
-	// 	const { store } = this.context;
-	// 	const state = store.getState();
-	// 	debugger;
-	// 	store.dispatch({
-	// 		type: 'RESET_SELECTORS'
-	// 	})
-	// 	// this.refs.playerSelector.clear(state.players[0])
-	// }
-
 	render() {
 		
 		let input;
@@ -44,8 +34,6 @@ class ScoreForm extends React.Component {
 			<form 
 				onSubmit={(event) => {
 					event.preventDefault();
-					// debugger;
-					// debugger;
 					store.dispatch({
 								type: 'ADD_SCORE',
 								id: nextScoreId++,

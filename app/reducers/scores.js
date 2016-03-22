@@ -1,14 +1,15 @@
 import { combineReducers } from 'redux';
 
-
+//TODO: remove when hooked up to server
 const constructPlayers = () => {
 	return [
 			{id: 1, name: "Carli Lloyd"},
-			{id: 2, name: "Becky Saurbruen"},
+			{id: 2, name: "Becky Sauerbrunn"},
 			{id: 3, name: "Hope Solo"}
 		];
 };
 
+//TODO: remove when hooked up to server
 const constructChallenges = () => {
 	return [
 			{id: 1, title: "Ronaldo Chop"},
@@ -44,24 +45,16 @@ const constructScores = (state, action) => {
 	}
 };
 
-// this initial state should be loaded from the server
+// TODO: this initial state should be loaded from the server
 const initialState = {
 	scores: [],
 	players: constructPlayers(),
 	challenges: constructChallenges(),
-	selectorCache: {player: null, challenge: null}
+	selectorCache: {
+		player: null, 
+		challenge: null
+	}
 };
-
-// const constructSelectors = (state, action) => {
-// 	switch (action.type) {
-// 		case 'SELECT_PLAYER':
-// 			return Object.assign(state.selectorCache, state.selectorCache, {
-// 				player: action.id
-// 			});
-// 		default:
-// 			return state;
-// 	}
-// };
 
 const scoresApp = (state =	initialState, action) => {
 	switch(action.type) {
@@ -85,7 +78,10 @@ const scoresApp = (state =	initialState, action) => {
 			return {
 				...state,
 				scores: constructScores(state, action),
-				selectorCache: {player: null, challenge: null}
+				selectorCache: {
+					player: null, 
+					challenge: null
+				}
 			};
 		default:
 			return state;
