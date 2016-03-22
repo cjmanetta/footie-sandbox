@@ -4,8 +4,8 @@ import ScoreForm from './components/scoreform';
 
 const Root = 	() => (
 	<div>
-		<Scoreboard />
 		<ScoreForm />
+		<Scoreboard />
 	</div>
 );
 
