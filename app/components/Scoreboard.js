@@ -29,7 +29,11 @@ const getSortedScores = (state) => {
 	
 		sortedScores.push({player: player.name, value: reducedScore()});
 	})
-	
+
+	sortedScores.sort((a, b) => {
+      return b.value - a.value;
+    })
+
 	return sortedScores
 };
 
